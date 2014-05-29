@@ -90,22 +90,6 @@
 				<artifactId>maven-surefire-plugin</artifactId>
 				<version>2.12</version>
 			</plugin>
-			<!-- plugin>
-				<artifactId>maven-war-plugin</artifactId>
-				<version>2.4</version>
-				<configuration>
-					<failOnMissingWebXml>false</failOnMissingWebXml>
-				</configuration>
-			</plugin-->
 		</plugins>
 	</build>
-
-
-	<!-- profiles> <profile> <id>arq-wildfly_remote_8</id> <build> <plugins> 
-		<plugin> <artifactId>maven-surefire-plugin</artifactId> <version>2.14.1</version> 
-		<configuration> <systemPropertyVariables> <arquillian.launch>WILDFLY_REMOTE_8</arquillian.launch> 
-		</systemPropertyVariables> </configuration> </plugin> </plugins> </build> 
-		<dependencies> <dependency> <groupId>org.wildfly</groupId> <artifactId>wildfly-arquillian-container-remote</artifactId> 
-		<version>8.0.0.Alpha4</version> </dependency> </dependencies> </profile> 
-		</profiles -->
 </project>
