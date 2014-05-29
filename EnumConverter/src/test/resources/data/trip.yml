@@ -1,0 +1,4 @@
+trip:
+  - id: 1
+    destination: Berlin
+    vehicle: C
