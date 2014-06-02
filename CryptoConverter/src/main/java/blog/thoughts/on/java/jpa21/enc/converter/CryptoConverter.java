@@ -22,7 +22,7 @@ public class CryptoConverter implements AttributeConverter<String, String> {
 		try {
 			Cipher c = Cipher.getInstance(ALGORITHM);
 			c.init(Cipher.ENCRYPT_MODE, key);
-			return Base64.encodeBytes(c.doFinal("123456789".getBytes()));
+			return Base64.encodeBytes(c.doFinal(ccNumber.getBytes()));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
