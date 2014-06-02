@@ -1,12 +1,9 @@
 package blog.thoughts.on.java.jpa21.enc.entity;
 
-import javax.persistence.Convert;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-
-import blog.thoughts.on.java.jpa21.enc.converter.CryptoConverter;
 
 @Entity
 public class CreditCard {
@@ -15,7 +12,7 @@ public class CreditCard {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Integer id;
 
-	@Convert(converter = CryptoConverter.class)
+	// @Convert(converter = CryptoConverter.class)
 	private String ccNumber;
 
 	private String name;

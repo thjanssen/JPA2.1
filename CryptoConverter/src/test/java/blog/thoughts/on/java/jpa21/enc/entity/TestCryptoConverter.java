@@ -31,6 +31,7 @@ public class TestCryptoConverter {
 						TestCryptoConverter.class)
 				.addAsManifestResource("META-INF/persistence.xml",
 						"persistence.xml")
+				.addAsManifestResource("META-INF/orm.xml", "orm.xml")
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml");
 	}
 
