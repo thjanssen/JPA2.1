@@ -7,7 +7,7 @@ import javax.crypto.spec.SecretKeySpec;
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;
 
-import org.dbunit.util.Base64;
+import org.apache.commons.codec.binary.Base64;
 
 @Converter
 public class CryptoConverter implements AttributeConverter<String, String> {
@@ -22,7 +22,7 @@ public class CryptoConverter implements AttributeConverter<String, String> {
 		try {
 			Cipher c = Cipher.getInstance(ALGORITHM);
 			c.init(Cipher.ENCRYPT_MODE, key);
-			return Base64.encodeBytes(c.doFinal(ccNumber.getBytes()));
+			return Base64.encodeBase64String(c.doFinal(ccNumber.getBytes()));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}
@@ -35,7 +35,7 @@ public class CryptoConverter implements AttributeConverter<String, String> {
 		try {
 			Cipher c = Cipher.getInstance(ALGORITHM);
 			c.init(Cipher.DECRYPT_MODE, key);
-			return new String(c.doFinal(Base64.decode(dbData)));
+			return new String(c.doFinal(Base64.decodeBase64(dbData)));
 		} catch (Exception e) {
 			throw new RuntimeException(e);
 		}

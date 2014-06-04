@@ -3,8 +3,6 @@ package blog.thoughts.on.java.jpa21.enc.entity;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
 
-import junit.framework.Assert;
-
 import org.jboss.arquillian.container.test.api.Deployment;
 import org.jboss.arquillian.junit.Arquillian;
 import org.jboss.arquillian.persistence.ShouldMatchDataSet;
@@ -12,6 +10,7 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.jboss.shrinkwrap.api.ShrinkWrap;
 import org.jboss.shrinkwrap.api.asset.EmptyAsset;
 import org.jboss.shrinkwrap.api.spec.JavaArchive;
+import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
@@ -36,7 +35,7 @@ public class TestCryptoConverter {
 	}
 
 	@Test
-	@ShouldMatchDataSet("data/cc.yml")
+	@ShouldMatchDataSet(value = "data/cc.yml", excludeColumns = "id")
 	public void testEncryption() {
 		CreditCard cc = new CreditCard();
 		cc.setName("My Name");
@@ -48,8 +47,9 @@ public class TestCryptoConverter {
 	@Test
 	@UsingDataSet("data/cc.yml")
 	public void testRead() {
-		CreditCard cc = this.em.find(CreditCard.class, 1);
+		CreditCard cc = this.em.createNamedQuery(CreditCard.BY_NUMBER, CreditCard.class)
+		                       .setParameter("number", "123456789")
+		                       .getSingleResult();
 		Assert.assertEquals("My Name", cc.getName());
-		Assert.assertEquals("123456789", cc.getCcNumber());
 	}
 }

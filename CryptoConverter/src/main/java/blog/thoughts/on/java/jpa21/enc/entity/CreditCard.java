@@ -4,9 +4,13 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.NamedQuery;
 
 @Entity
+@NamedQuery(name = CreditCard.BY_NUMBER, query = "from CreditCard cc where cc.ccNumber = :number")
 public class CreditCard {
+
+    public static final String BY_NUMBER = "CreditCard-by_number";
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
